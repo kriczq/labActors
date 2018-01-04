@@ -2,7 +2,8 @@ package lab11b
 
 import akka.actor._
 
-
+import scala.concurrent.duration._
+import scala.concurrent.Await
  
 //////////////////////////////////////////
 // Introduction to Scala (Akka) Actors  //
@@ -103,7 +104,7 @@ class CounterMain extends Actor {
     case Value(count) =>
       println(s"count received: $count" )
       println(Thread.currentThread.getName + ".")
-      context.system.shutdown
+      context.system.terminate
   }
 }
 
@@ -114,5 +115,5 @@ object ApplicationMain extends App {
 
   mainActor ! Counter.Init
 
-  system.awaitTermination()
+    Await.result(system.whenTerminated, Duration.Inf)
 }
