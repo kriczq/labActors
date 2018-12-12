@@ -1,4 +1,4 @@
-name := "lab11b"
+name := "labActors"
 
 version := "1.1"
 
